@@ -38,5 +38,16 @@ services:
       rabbitmq:
         condition: service_healthy
 
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service
+    ports:
+      - "3003:3003"
+    depends_on:
+      mongo:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
 volumes:
   mongo_data:
